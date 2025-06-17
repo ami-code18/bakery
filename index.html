@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="btn1">１番目</button>
+    <button id="btn2">2番目</button>
+    <button id="btn3">3番目</button>
+    <button id="btn4">4番目</button>
+
+    <button id="all">一覧</button>
+
+
+    <script>
+        document.getElementById('btn1').onclick = () => {
+            window.location = 'first.html';
+        }
+
+        document.getElementById('btn2').onclick = () => {
+            window.location = 'second.html';
+        }
+
+        document.getElementById('all').onclick = () => {
+            window.location= 'bakery.html';
+        }
+    </script>
+</body>
+
+</html>

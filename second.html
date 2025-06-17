@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クイズ</title>
+</head>
+
+<body>
+
+    <h1 id="question">問題</h1>
+    <div id="choice">選択肢</div>
+    <p id="answer">答え</p>
+    <button id="nextBtn">次へ</button>
+
+    <script>
+        const quiz = [
+            {
+                question: 'ケチャマヨ',
+                choice: ['180/5 200/3 12分', '180/5 200/3 12分'],
+                answer: '180/5 200/3 12分'
+            },
+            {
+                question: 'あらびきポークフランク',
+                choice: ['200/5 180/3 12分より長い', '200/5 180/3 12分より長い'],
+                answer: '200/5 180/3 12分より長い'
+            },
+            {
+                question: '明太フィセル',
+                choice: ['200/5 180/3 4分', '200/5 180/3 12分より長い'],
+                answer: '200/5 180/3 4分'
+            },
+            {
+                question: 'あんパン',
+                choice: ['200/5 180/3 10分', '200/5 180/3 12分より長い'],
+                answer: '200/5 180/3 10分'
+            },
+            {
+                question: 'コルネ',
+                choice: ['200/5 180/3 10分', '200/5 180/3 12分より長い'],
+                answer: '200/5 180/3 10分'
+            },
+            {
+                question: 'ヨモギ',
+                choice: ['200/5 200/5 12分', '200/5 180/3 12分より長い'],
+                answer: '200/5 200/5 12分'
+            },
+            {
+                question: '贅沢ミルクスティック',
+                choice: ['200/5 200/5 12分', '200/5 180/3 12分より長い'],
+                answer: '200/5 200/5 12分'
+            },
+            {
+                question: '牛乳美人',
+                choice: ['160/1 200/4 15分', '200/5 180/3 12分より長い'],
+                answer: '160/1 200/4 15分'
+            },
+            
+            {
+                question: 'メープルメロン',
+                choice: ['160/0 180/3 10分 上を180にして５分', '200/5 180/3 12分より長い'],
+                answer: '160/0 180/3 10分 上を180にして５分'
+            },
+            {
+                question: 'フラン',
+                choice: ['180/3 200/5 12分', '200/5 180/3 12分より長い'],
+                answer: '180/3 200/5 12分'
+            },
+            {
+                question: 'ミニクイニー',
+                choice: ['180/3 200/5 12分', '200/5 180/3 12分より長い'],
+                answer: '180/3 200/5 12分'
+            },
+            {
+                question: 'モンブラン',
+                choice: ['180/3 200/5 12分', '200/5 180/3 12分より長い'],
+                answer: '180/3 200/5 12分'
+            },
+            {
+                question: 'ミルキーロール',
+                choice: ['190/4 170/3 11分', '200/5 180/3 12分より長い'],
+                answer: '190/4 170/3 11分'
+            }
+
+        ];
+
+        let currentIndex = 0;
+        const questionEl = document.getElementById('question');
+        const choiceEl = document.getElementById('choice');
+        const answerEl = document.getElementById('answer');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function showQuestion(index) {
+            if (index >= quiz.length) {
+                currentIndex = 0;
+                showQuestion(currentIndex);
+                return;
+            }
+
+            const q = quiz[index];
+            questionEl.textContent = q.question;
+            choiceEl.innerHTML = '';
+            answerEl.textContent = '';
+
+            q.choice.forEach(choice => {
+                const btn = document.createElement('button');
+                btn.textContent = choice;
+                btn.onclick = () => {
+                    if (choice === q.answer) {
+                        answerEl.textContent = '正解：' + q.answer;
+                    } else {
+                        answerEl.textContent = '不正解。正解は：' + q.answer;
+                    }
+                    Array.from(choiceEl.children).forEach(b => b.disabled = true);
+                };
+                choiceEl.appendChild(btn);
+            });
+        }
+
+        nextBtn.onclick = () => {
+            currentIndex++;
+            showQuestion(currentIndex);
+        };
+
+        showQuestion(currentIndex);
+    </script>
+
+</body>
+
+</html>

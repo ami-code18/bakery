@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クイズ</title>
+</head>
+
+<body>
+
+  <h1 id="question">問題</h1>
+  <div id="choice">選択</div>
+  <div id="answer">答え</div>
+  <button id="nextBtn">次の問題へ</button>
+
+  <script>
+    const quiz = [
+      {
+        question: '華氏温度は？',
+        choice: ["200/5  180/3", "200/4  200/5"],
+        answer: "200/5  180/3"
+      },
+      {
+        question: 'ホテル食パンの温度は？',
+        choice: ["170/4  232/6  36分", "200/4  200/5"],
+        answer: "170/4  232/6  36分"
+      },
+      {
+        question: '田園食パンの温度は？',
+        choice: ["180/4  245/7  45分", "200/4  200/5"],
+        answer: "180/4  245/7  45分"
+      },
+      {
+        question: 'りんごパイの温度は？',
+        choice: ["200/5  180/3  15分", "200/4  200/5"],
+        answer: "200/5  180/3  15分"
+      },
+      {
+        question: 'ブリュレパイの温度は？',
+        choice: ["200/5  180/3 ", "200/4  200/5"],
+        answer: "200/5  180/3  "
+      },
+      {
+        question: '焼きサンドの温度は？',
+        choice: ["200/5  180/3  10分", "200/4  200/5"],
+        answer: "200/5  180/3  10分"
+      },
+      {
+        question: 'マカダミアナッツ＆ヘーゼルナッツの温度は？',
+        choice: ["190/4  200/4  15分", "200/4  200/5"],
+        answer: "190/4  200/4  15分"
+      },
+      {
+        question: 'メロンパンの温度は？',
+        choice: ["180/3  180/3  10分  上火205で3分", "200/4  200/5"],
+        answer: "180/3  180/3  10分  上火205で3分"
+      },
+      {
+        question: 'とろふわチーズの温度は？',
+        choice: ["160/0  200/3  15分 少なめ", "200/4  200/5"],
+        answer: "160/0  200/3  15分 少なめ"
+      },
+      {
+        question: 'ロイヤルホワイトの温度は？',
+        choice: ["180/4  220/5  23分 ", "200/4  200/5"],
+        answer: "180/4  220/5  23分 "
+      },
+      {
+        question: '塩パンの温度は？',
+        choice: ["220/3  210/5  12分", "200/4  200/5"],
+        answer: "220/3  210/5  12分"
+      },
+
+
+    ];
+
+    let currentIndex = 0;
+    const questionEl = document.getElementById('question');
+    const choiceEl = document.getElementById('choice');
+    const answerEl = document.getElementById('answer');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function showQuestion(index) {
+      // 問題が終わったら表示を止める
+      if (index >= quiz.length) {
+        currentIndex = 0; // インデックスをリセット
+        showQuestion(currentIndex); // 最初の問題に戻る
+        return;
+      }
+
+      // 問題の表示を更新
+      const q = quiz[index];
+      questionEl.textContent = q.question;
+      choiceEl.innerHTML = '';
+      answerEl.textContent = '';
+
+      // 選択肢のボタンを作成
+      q.choice.forEach(choice => {
+        const btn = document.createElement('button');
+        btn.textContent = choice;
+        btn.onclick = () => {
+          if (choice === q.answer) {
+            answerEl.textContent = '正解：' + q.answer;
+          } else {
+            answerEl.textContent = '不正解。正解は：' + q.answer;
+          }
+          // ボタンを無効化
+          Array.from(choiceEl.children).forEach(b => b.disabled = true);
+        };
+        choiceEl.appendChild(btn);
+      });
+    }
+
+    // 最初の問題を表示
+    showQuestion(currentIndex);
+
+    // 次へボタンの処理
+    nextBtn.onclick = () => {
+      currentIndex++;
+      showQuestion(currentIndex);
+    };
+  </script>
+
+</body>
+
+</html>
