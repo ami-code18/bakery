@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>食パン</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 16px;
+      text-align: center;
+    }
+
+    td.clickable {
+      cursor: pointer;
+    }
+
+    button {
+      margin-bottom: 16px;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>食パン</h1>
+
+  <!-- すべて表示 / 非表示 ボタン -->
+  <button id="toggleAllBtn">すべて表示</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>項目</th>
+        <th>温度</th>
+        <th>スチーム</th>
+        <th>時間</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ホテル食パン</td>
+        <td class="clickable" data-value="170/4 232/6"></td>
+        <td class="clickable" data-value="なし"></td>
+        <td class="clickable" data-value="36分"></td>
+      </tr>
+      <tr>
+        <td>田園食パン</td>
+        <td class="clickable" data-value="180/4 245/7"></td>
+        <td class="clickable" data-value="少なめ、自動3秒"></td>
+        <td class="clickable" data-value="45分"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // 初期化：すべてのセルを非表示に
+    document.querySelectorAll('td.clickable').forEach(cell => {
+      cell.textContent = '';
+      cell.addEventListener('click', () => {
+        //cell.textContent === '' これでセルの中が空かどうか聴いている。true : false
+        cell.textContent = cell.textContent === '' ? cell.dataset.value : '';
+      });
+    });
+
+    // 一括表示 / 非表示 ボタン処理
+    const toggleAllBtn = document.getElementById('toggleAllBtn');
+    let allVisible = false;
+
+    toggleAllBtn.addEventListener('click', () => {
+      document.querySelectorAll('td.clickable').forEach(cell => {
+        cell.textContent = allVisible ? '' : cell.dataset.value;
+      });
+      allVisible = !allVisible;
+      toggleAllBtn.textContent = allVisible ? 'すべて非表示' : 'すべて表示';
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>温度の問題</h1>
+    <button id="btn1">すべて</button>
+    <button id="btn2">スチーム系</button>
+    <button id="btn3">デニッシュ</button>
+    <button id="btn4">菓子</button>
+    <button id="btn5">調理</button>
+
+    <script>
+        const buttons = [
+            { id: 'btn1', url: 'all.html' },
+            { id: 'btn2', url: 'steam.html' },
+            { id: 'btn3', url: 'danish.html' },
+            { id: 'btn4', url: 'kashi.html' },
+            { id: 'btn5', url: 'cook.html' }
+        ];
+
+        buttons.forEach(({ id, url }) => {
+            document.getElementById(id).onclick = () => {
+                window.location = url;
+            };
+        });
+    </script>
+</body>
+
+</html>

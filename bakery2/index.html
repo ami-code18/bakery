@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ジャンル選択</title>
+</head>
+
+<body>
+
+    <h1>温度を表示する</h1>
+    <h1>ジャンルを選択して下さい</h1>
+
+    <button id="syokupan">食パン</button>
+    <button id="kashi">菓子パン</button>
+    <button id="cook">調理パン</button>
+    <button id="denish">デニッシュ</button>
+    <button id="hard">ハード</button>
+
+    <script>
+        const btns = [
+            { id: 'syokupan', url: 'syokupan.html' },
+            { id: 'kashi', url: 'kashi.html' },
+            { id: 'cook', url: 'cook.html' },
+            { id: 'denish', url: 'denish.html' },
+            { id: 'hard', url: 'hard.html' },
+        ];
+
+        btns.forEach(item => {
+            const button = document.getElementById(item.id);
+            if (button) {
+                button.addEventListener('click', () => {
+                    window.location.href = item.url;
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

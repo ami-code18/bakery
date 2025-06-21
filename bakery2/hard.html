@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 16px;
+            text-align: center;
+        }
+
+        td.clickable {
+            cursor: pointer;
+        }
+
+        button {
+            margin-bottom: 16px;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>ハード</h1>
+    <button id="toggleAllBtn">すべて表示する</button>
+
+    <table>
+        <thead>
+            <tr>
+
+                <th>項目</th>
+                <th>温度</th>
+                <th>スチーム</th>
+                <th>時間</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>塩パン</td>
+                <td class="clickable" data-value="220/3 210/5"></td>
+                <td class="clickable" data-value="少し"></td>
+                <td class="clickable" data-value="12分"></td>
+            </tr>
+            <tr>
+                <td>チーズフォンデュ</td>
+                <td class="clickable" data-value="230/5 210/5"></td>
+                <td class="clickable" data-value="少なめ"></td>
+                <td class="clickable" data-value="18分"></td>
+            </tr>
+
+            <tr>
+                <td>ペッパーフランス</td>
+                <td class="clickable" data-value="230/5 210/5"></td>
+                <td class="clickable" data-value="少なめ"></td>
+                <td class="clickable" data-value="18分"></td>
+            </tr>
+
+            <tr>
+                <td>生フランス</td>
+                <td class="clickable" data-value="200/5 220/5"></td>
+                <td class="clickable" data-value="少なめ"></td>
+                <td class="clickable" data-value="28分"></td>
+            </tr>
+
+            <tr>
+                <td>生クリームパン</td>
+                <td class="clickable" data-value="200/5 230/5"></td>
+                <td class="clickable" data-value="少なめ"></td>
+                <td class="clickable" data-value="12分"></td>
+            </tr>
+
+            <tr>
+                <td>チーズフォンデュ</td>
+                <td class="clickable" data-value="230/5 210/5"></td>
+                <td class="clickable" data-value="少なめ"></td>
+                <td class="clickable" data-value="18分"></td>
+            </tr>
+
+            <tr>
+                <td>チーズフォンデュ</td>
+                <td class="clickable" data-value="230/5 210/5"></td>
+                <td class="clickable" data-value="少なめ"></td>
+                <td class="clickable" data-value="18分"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+
+        document.querySelectorAll('td.clickable').forEach(cell => {
+            cell.textContent = '';
+            cell.addEventListener('click', () => {
+                cell.textContent = cell.textContent === '' ? cell.dataset.value : '';
+            });
+        });
+
+        const toggleAllBtn = document.getElementById('toggleAllBtn');
+        let allVisible = false;
+
+        toggleAllBtn.addEventListener('click', () => {
+            document.querySelectorAll('td.clickable').forEach(cell => {
+                cell.textContent = allVisible ? '' : cell.dataset.value;
+            });
+            allVisible = !allVisible;
+            toggleAllBtn.textContent = allVisible ? 'すべて非表示' : 'すべて表示';
+        });
+    </script>
+
+</body>
+
+</html>

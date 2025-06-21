@@ -9,6 +9,8 @@
 
 <body>
 
+
+    <h1>択一問題</h1>
     <button id="btn1">１番目</button>
     <button id="btn2">2番目</button>
     <button id="btn3">3番目</button>
@@ -16,6 +18,11 @@
 
     <button id="all">一覧</button>
 
+    <h1>フラッシュ問題</h1>
+    <button id="flashBtn">フラッシュ問題</button>
+
+    <h1>赤シート問題</h1>
+    <button id="redSheet">赤シート問題</button>
 
     <script>
         document.getElementById('btn1').onclick = () => {
@@ -26,9 +33,21 @@
             window.location = 'second.html';
         }
 
-        document.getElementById('all').onclick = () => {
-            window.location= 'bakery.html';
+        document.getElementById('btn3').onclick = () => {
+            window.location = 'third.html';
         }
+
+        document.getElementById('all').onclick = () => {
+            window.location = 'bakery.html';
+        }
+
+        document.getElementById('flashBtn').addEventListener('click', () => {
+            window.location.href = './flash/index.html';
+        });
+
+        document.getElementById('redSheet').addEventListener('click', () => {
+            window.location.href = './bakery2/index.html';
+        });
     </script>
 </body>
 

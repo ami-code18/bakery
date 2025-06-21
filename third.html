@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 id="question">問題</h1>
+    <div id="choice">選択</div>
+    <div id="answer">答え</div>
+    <button id="nextBtn">次の問題へ</button>
+
+    <script>
+        const quiz = [
+            {
+                question: '生フランスパン',
+                choice: ['200/5 220/5 28分 少なめ', '200/5 220/5 28分'],
+                answer: '200/5 220/5 28分 少なめ'
+            },
+            {
+                question: '生クリームパン',
+                choice: ['200/5 230/5 12分 少なめ', '200/5 220/5 28分'],
+                answer: '200/5 230/5 12分 少なめ'
+            },
+            {
+                question: 'お米',
+                choice: ['180/3 180/3 20分 少なめ', '200/5 220/5 28分'],
+                answer: '180/3 180/3 20分 少なめ'
+            },
+            {
+                question: 'チーズフォンデュ',
+                choice: ['230/5 210/5 18分 少なめ', '200/5 220/5 28分'],
+                answer: '230/5 210/5 18分 少なめ'
+            },
+            {
+                question: 'ペッパーフランス',
+                choice: ['200/5 220/5 28分', '200/5 220/5 28分'],
+                answer: '200/5 220/5 28分'
+            },
+        ]
+
+        let currentIndex = 0;
+        const questionEl = document.getElementById('question');
+        const choiceEl = document.getElementById('choice');
+        const answerEl = document.getElementById('answer');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function showQuestion(index) {
+
+            //問題の最後まで行くと最初の問題に戻る
+            if (index >= quiz.length) {
+                currentIndex = 0;
+                showQuestion(currentIndex);
+                return;
+            }
+
+            //問題を表示する
+            const q = quiz[index];
+            questionEl.textContent = q.question;
+            choiceEl.textContent = '';
+            answerEl.textContent = '';
+
+            //選択肢を作成する(ボタン形式で)
+            q.choice.forEach(choice =>{
+                const btn = document.createElement('button');
+                btn.textContent=choice;
+
+                btn.onclick = () =>{
+                    if(choice === q.answer){
+                        answerEl.textContent = '正解：' + q.answer;
+                    }else{
+                        answerEl.textContent='不正解。正解は' + q.answer;
+                    }
+                    Array.from(choiceEl.children).forEach(b => b.disabled = true);
+                }
+
+                choiceEl.appendChild(btn);
+            });
+
+        }
+
+        showQuestion(currentIndex);
+
+        nextBtn.onclick = ()=>{
+            currentIndex++;
+            showQuestion(currentIndex);
+        }
+    </script>
+</body>
+
+</html>
